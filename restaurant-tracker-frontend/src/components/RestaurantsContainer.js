@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import Note from './Note'
+import NoteForm from './NoteForm'
 import { loginParams } from '../services/user'
 
 
@@ -10,6 +11,7 @@ export default class RestaurantsContainer extends React.Component {
 
 		this.state = {
 			username: '',
+			userId: '',
 			notes: []
 		}
 	}
@@ -19,7 +21,7 @@ export default class RestaurantsContainer extends React.Component {
 		const token = localStorage.getItem("jwtToken")
 		const decoded = jwtDecode(token)
 
-		return fetch("http://localhost:3000/users/"+decoded.user_id.toString(), {
+		return fetch("http://localhost:3000/users/"+decoded.user_id, {
 			headers: {
 			'Accept': 'application/json', 
       'Content-Type': 'application/json',
@@ -30,15 +32,31 @@ export default class RestaurantsContainer extends React.Component {
 		.then(res => res.json())
 		.then(res => this.setState({
 			username: res.username,
+			userId: res.id,
 			notes: res.notes
-		}, () => {console.log(this.state)})
+		})
 	)}
+
+	addNote = (noteObject) => {
+		console.log(this.state)
+		console.log("pass to DB", noteObject)
+
+		// return fetch("http://localhost:3000/notes/create", {
+		// 	'method': 'post',
+		// 	'body': noteObject,
+		// 	headers: {
+		// 	'Accept': 'application/json', 
+  //     'Content-Type': 'application/json',
+  //     'Authorization': `${token}`
+  //  		}
+	}
 
 	render(){
 		const notes = this.state.notes.map((note, index) => <Note key={index} title={note.title} body={note.body} rest={note.restaurant}/>)
 		if (localStorage.getItem("jwtToken")) {
 			return (
 				<div>
+					<NoteForm addNote={this.addNote}/>
 					<h1>MY SPOTS</h1>
 					<table>
 						<tbody>
