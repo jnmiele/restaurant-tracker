@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 // import 'semantic-ui-css/semantic.min.css';
-import BooksContainer from './components/BooksContainer'
-import Nav from './components/Nav'
-import Cart from './components/Cart'
-import { Route, Redirect } from 'react-router-dom'
+// import Nav from './components/Nav'
+import { Route } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
+import { loginUser } from './services/user'
+import RestaurantsContainer from './components/RestaurantsContainer'
 
 class App extends Component {
 
-
-
   state = {
-    cart: [],
+    user: {},
     isLoggedIn: false
   }
-
 
 
   logout = () => {
@@ -23,41 +20,33 @@ class App extends Component {
   }
 
 
-
-
   componentDidMount() {
-    fetch("http://localhost:3000/welcome")
+    fetch("http://localhost:3000/")
       .then((res) => res.json())
       .then((json) => {
-        console.log(json)
+
+        // console.log(json)
+
+      })
+  }
+
+  login = (loginParams) => {
+    loginUser(loginParams)
+      .then((user) => {
+        localStorage.setItem("jwtToken", user.jwt)
+        this.setState({
+          user,
+          isLoggedIn: true
+        })
       })
   }
 
 
-
-  addToCart = (book) => {
-    console.log(book)
-
-    this.setState({
-      cart: [...this.state.cart, book]
-    })
-  }
-
-
   render() {
-    console.log(this.props)
-
-      // I am logged in
       return (
         <div className="App">
-
-          <Route path="/" component={Nav}/>
-
-          <Route path="/cart" render={(props) => <Cart {...props} cart={this.state.cart}/>}/>
-          <Route path="/login" component={LoginForm}/>
-          <Route path="/books" render={(props) => <BooksContainer cart={this.state.cart} addToCart={this.addToCart} onClearCart={this.clearCart} {...props} /> } />
-
-
+          <Route path="/login" render={(props) => <LoginForm onLogin={this.login} {...props}/>}/>
+          <Route path="/spots" render={(props) => <RestaurantsContainer user={this.state.user} {...props}/>}/>
         </div>
       );
   }
@@ -66,3 +55,11 @@ class App extends Component {
 
 
 export default App;
+  // <Route path="/" component={Nav}/>
+
+  // const AuthRestContainer = Authorize(RestaurantsContainer)
+  // <Route path="/spots" render={(props) => <AuthRestContainer {...props} /> } />
+
+  // const AuthLoginForm = Authorize(LoginForm)
+  // <Route path="/login" render={(props) => <AuthLoginForm /> } />
+

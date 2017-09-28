@@ -1,26 +1,24 @@
 import React from 'react'
-import { loginUser } from '../services/user'
 import { Redirect } from 'react-router-dom'
 
 class LoginForm extends React.Component {
+  constructor(props) {
+    super(props)
 
-  state = {
-    username: "",
-    password: ""
+    this.state = {
+      username: "",
+      password: ""
+    }
   }
-
 
   handleSubmit = (event) => {
     event.preventDefault()
 
     const loginParams = { username: this.state.username, password: this.state.password}
-    loginUser(loginParams)
-      .then((user) => {
-        localStorage.setItem("jwtToken", user.jwt)
-        this.setState({
-          username: "",
-          password:""
-        })
+    this.props.onLogin(loginParams)
+      this.setState({
+        username: "",
+        password:""
       })
   }
 
@@ -41,7 +39,7 @@ class LoginForm extends React.Component {
 
   render() {
     if (localStorage.getItem('jwtToken')) {
-      return <Redirect to="/books"/>
+      return <Redirect to="/spots"/>
     } else {
       return (
         <form onSubmit={this.handleSubmit}>
