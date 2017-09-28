@@ -1,6 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import Note from './Note'
+import { loginParams } from '../services/user'
 
 
 export default class RestaurantsContainer extends React.Component {
@@ -17,8 +18,15 @@ export default class RestaurantsContainer extends React.Component {
 		const jwtDecode = require('jwt-decode')
 		const token = localStorage.getItem("jwtToken")
 		const decoded = jwtDecode(token)
-		console.log("url=", "http://localhost:3000/users/"+decoded.user_id.toString())
-		return fetch("http://localhost:3000/users/"+decoded.user_id.toString())
+
+		return fetch("http://localhost:3000/users/"+decoded.user_id.toString(), {
+			headers: {
+			'Accept': 'application/json', 
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`
+   		}
+		}
+		)
 		.then(res => res.json())
 		.then(res => this.setState({
 			username: res.username,
