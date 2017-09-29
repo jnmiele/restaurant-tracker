@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import Note from './Note'
 import NoteForm from './NoteForm'
-import { loginParams } from '../services/user'
+// import { loginParams } from '../services/user'
 import YelpSearch from './YelpSearch'
 
 
@@ -24,9 +24,9 @@ export default class RestaurantsContainer extends React.Component {
 
 		return fetch("http://localhost:3000/users/"+decoded.user_id, {
 			headers: {
-			'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': `${token}`
+				'Accept': 'application/json',
+	      'Content-Type': 'application/json',
+	      'Authorization': `${token}`
    		}
 		}
 		)
@@ -39,9 +39,21 @@ export default class RestaurantsContainer extends React.Component {
 	)
 	}
 
-	handleSearch = (searchTerm) => {
-		console.log("look for this:", searchTerm)
-	}
+    handleSearch = (searchTerm) => {
+      const token = localStorage.getItem("jwtToken")
+      const body = JSON.stringify(searchTerm)
+      return fetch("http://localhost:3000/yelp", {
+          method: "POST",
+          headers: {
+          'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `${token}`
+         },
+         'body': body
+     })
+      .then(res => res.json())
+      .then(res => console.log(res))
+    }
 
 	addNote = (noteObject) => {
 		const token = localStorage.getItem("jwtToken")

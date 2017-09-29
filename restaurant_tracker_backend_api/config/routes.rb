@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/', to: 'application#welcome'
   post '/notes', to: 'notes#create'
   delete '/notes', to: 'notes#destroy'
+  post '/yelp', to: 'yelp#fetch'
 end
 
 

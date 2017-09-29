@@ -1,26 +1,29 @@
 import React from 'react'
 
 class YelpSearch extends React.Component {
-	constructor(props){
-		super(props)
+    constructor(props){
+        super(props)
 
-		this.state = {
-			search: ''
-		}
-	}
+        this.state = {
+            search: ''
+        }
+    }
 
-	onChange = (event) => {
-		const searchTerm = event.target.value
-		this.setState({
-			search: searchTerm
-		}, this.props.handleSearch(searchTerm))
-	}
+    onSubmit = (event) => {
+        event.preventDefault()
+        const restName = event.target.rest.value
+        this.setState({
+            search: restName
+        }, () => this.props.handleSearch({restaurantName: restName}))
+    }
 
-	render(){
-		return(
-			<input type="text" value={this.state.value} onChange={this.onChange} />
-		)
-	}
+    render(){
+        return(
+            <form onSubmit={this.onSubmit}>
+                <input type="text" name="rest" placeholder="Restaurant Name"/>
+            </form>
+        )
+    }
 
 }
 

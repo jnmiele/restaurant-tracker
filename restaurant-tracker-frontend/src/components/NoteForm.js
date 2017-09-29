@@ -25,7 +25,6 @@ export default class NoteForm extends React.Component {
 	render() {
 		return(
 			<form onSubmit={this.handleChange}>
-				<input type="text" name="rest" placeholder="Restaurant"/>
 				<input type="text" name="title" placeholder="Title"/>
 				<input type="text" name="body" placeholder="Body"/>
 				<input type="submit" value="New Note" />
