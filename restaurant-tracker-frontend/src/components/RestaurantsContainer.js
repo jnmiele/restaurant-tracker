@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import Note from './Note'
 import NoteForm from './NoteForm'
 import { loginParams } from '../services/user'
+import YelpSearch from './YelpSearch'
 
 
 export default class RestaurantsContainer extends React.Component {
@@ -35,7 +36,12 @@ export default class RestaurantsContainer extends React.Component {
 			userId: res.id,
 			notes: res.notes
 		})
-	)}
+	)
+	}
+
+	handleSearch = (searchTerm) => {
+		console.log("look for this:", searchTerm)
+	}
 
 	addNote = (noteObject) => {
 		console.log(this.state)
@@ -56,6 +62,7 @@ export default class RestaurantsContainer extends React.Component {
 		if (localStorage.getItem("jwtToken")) {
 			return (
 				<div>
+					<YelpSearch handleSearch={this.handleSearch} />
 					<NoteForm addNote={this.addNote}/>
 					<h1>MY SPOTS</h1>
 					<table>
