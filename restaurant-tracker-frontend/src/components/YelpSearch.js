@@ -1,6 +1,6 @@
 import React from 'react'
 
-class YelpSearch extends React.Componenet {
+class YelpSearch extends React.Component {
 	constructor(props){
 		super(props)
 

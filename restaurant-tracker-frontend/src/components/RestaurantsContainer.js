@@ -24,7 +24,7 @@ export default class RestaurantsContainer extends React.Component {
 
 		return fetch("http://localhost:3000/users/"+decoded.user_id, {
 			headers: {
-			'Accept': 'application/json', 
+			'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization': `${token}`
    		}
@@ -44,17 +44,25 @@ export default class RestaurantsContainer extends React.Component {
 	}
 
 	addNote = (noteObject) => {
-		console.log(this.state)
 		console.log("pass to DB", noteObject)
+		console.log(this.state)
+		const token = localStorage.getItem("jwtToken")
+		const body = JSON.stringify(noteObject)
 
-		// return fetch("http://localhost:3000/notes/create", {
-		// 	'method': 'post',
-		// 	'body': noteObject,
-		// 	headers: {
-		// 	'Accept': 'application/json', 
-  //     'Content-Type': 'application/json',
-  //     'Authorization': `${token}`
-  //  		}
+		return fetch("http://localhost:3000/notes", {
+			'method': 'post',
+			'headers': {
+				'Accept': 'application/json',
+	      'Content-Type': 'application/json',
+	      'Authorization': `${token}`
+   		},
+  		'body': body,
+  	})
+		// this.setState({
+		// 	username: this.state.username,
+		// 	userId: this.state.userId,
+		// 	notes: [...this.state.notes, noteObject]
+		// }, ()=>{console.log(this.state)})
 	}
 
 	render(){
@@ -63,7 +71,7 @@ export default class RestaurantsContainer extends React.Component {
 			return (
 				<div>
 					<YelpSearch handleSearch={this.handleSearch} />
-					<NoteForm addNote={this.addNote}/>
+					<NoteForm addNote={this.addNote} userId={this.state.userId}/>
 					<h1>MY SPOTS</h1>
 					<table>
 						<tbody>
@@ -87,7 +95,7 @@ export default class RestaurantsContainer extends React.Component {
 	}
 }
 
-// <-- High Order Components --> 
+// <-- High Order Components -->
 // import React from 'react'
 //
 // funtion Authorize(RenderedComponent, props) {
@@ -102,7 +110,7 @@ export default class RestaurantsContainer extends React.Component {
 //			  this.props.history.push('login')
 //			}
 //		}
-//		render() {		
+//		render() {
 //			return(
 //				<RenderedComponent {...this.props} {...props}/>
 //			)

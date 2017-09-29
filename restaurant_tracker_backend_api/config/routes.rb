@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/login', to: 'auth#create'
   get '/users/:id', to: 'users#show'
   get '/', to: 'application#welcome'
+  post '/notes', to: 'notes#create'
 end
 
 
