@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show'
   get '/', to: 'application#welcome'
   post '/notes', to: 'notes#create'
+  delete '/notes', to: 'notes#destroy'
 end
 
 

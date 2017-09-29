@@ -16,11 +16,10 @@ export default class NoteForm extends React.Component {
 		const title = event.target.title.value
 		const body = event.target.body.value
 		const rest = event.target.rest.value
-		console.log(this.props)
 		this.setState({
 			title,
 			body
-		}, this.props.addNote({note: {title, body, id: 3,	restaurant: rest,	user_id: 1}}))
+		}, ()=>{this.props.addNote({note: {title, body,	restaurant: rest,	user_id: 1}})})
 	}
 
 	render() {

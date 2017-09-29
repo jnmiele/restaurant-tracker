@@ -44,8 +44,6 @@ export default class RestaurantsContainer extends React.Component {
 	}
 
 	addNote = (noteObject) => {
-		console.log("pass to DB", noteObject)
-		console.log(this.state)
 		const token = localStorage.getItem("jwtToken")
 		const body = JSON.stringify(noteObject)
 
@@ -57,16 +55,33 @@ export default class RestaurantsContainer extends React.Component {
 	      'Authorization': `${token}`
    		},
   		'body': body,
+  	}).then((res)=>res.json()).then((res)=>{
+  		let notes = [...this.state.notes, res]
+  		this.setState({
+  			notes: notes
+  		})
+  		})
+
+	}
+
+	handleDelete = (event) => {
+		const noteId = event.target.id
+		const token = localStorage.getItem("jwtToken")
+		const body = JSON.stringify({note_id: noteId})
+
+		return fetch("http://localhost:3000/notes", {
+			'method': 'delete',
+			'headers': {
+				'Accept': 'application/json',
+	      'Content-Type': 'application/json',
+	      'Authorization': `${token}`
+   		},
+  		'body': body,
   	})
-		// this.setState({
-		// 	username: this.state.username,
-		// 	userId: this.state.userId,
-		// 	notes: [...this.state.notes, noteObject]
-		// }, ()=>{console.log(this.state)})
 	}
 
 	render(){
-		const notes = this.state.notes.map((note, index) => <Note key={index} title={note.title} body={note.body} rest={note.restaurant}/>)
+		const notes = this.state.notes.map((note, index) => <Note key={note.id} id={note.id} title={note.title} body={note.body} rest={note.restaurant} handleDelete={this.handleDelete}/>)
 		if (localStorage.getItem("jwtToken")) {
 			return (
 				<div>
