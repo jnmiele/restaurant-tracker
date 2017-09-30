@@ -69,9 +69,9 @@ export default class RestaurantsContainer extends React.Component {
   		'body': body,
   	}).then((res)=>res.json()).then((res)=>{
   		let notes = [...this.state.notes, res]
-  		this.setState({
-  			notes: notes
-  		})
+	  		this.setState({
+	  			notes: notes
+	  		})
   		})
 
 	}
