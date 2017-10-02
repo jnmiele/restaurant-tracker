@@ -58,6 +58,7 @@ export default class RestaurantsContainer extends React.Component {
     })
 	}
 
+
 	render(){
 		if (localStorage.getItem("jwtToken")) {
 			return (
@@ -68,7 +69,7 @@ export default class RestaurantsContainer extends React.Component {
 		} else if (this.props.location.pathname === "/login"){
 				 return null
 		} else {
-			return (<Redirect to="/login"/>)
+			return (<Redirect to="/login" />)
 		}
 	}
 }

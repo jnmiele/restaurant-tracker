@@ -38,10 +38,9 @@ class App extends Component {
       })
   }
 
-  addSpot = (spotObject) => {
+  addSpot = (spotObject, props) => {
     const token = localStorage.getItem("jwtToken")
     const body = JSON.stringify(spotObject)
-    debugger
 
     return fetch("http://localhost:3000/spots", {
       'method': 'post',
@@ -58,6 +57,9 @@ class App extends Component {
           spots: spots 
         })
       })
+    .then(() => {
+      console.log(props)
+    })
   }
 
   handleSearch = (searchTerm) => {
