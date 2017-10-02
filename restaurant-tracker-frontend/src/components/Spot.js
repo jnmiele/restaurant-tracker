@@ -1,13 +1,14 @@
 import React from 'react'
 
-const Note = (props) => {
+const Spot = (props) => {
 	const created_at = new Date(props.rest.created_at)
 	return(
+
 		<div className="column is-one-quarter">
 			<div className="card">
 			  <div className="card-image">
 			    <figure className="image is-4by3">
-			      <img src="http://lorempixel.com/400/300/food/" alt=""/>
+			      <img src={props.rest.image_url} alt=""/>
 			    </figure>
 			  </div>
 			  <div className="card-content">
@@ -29,7 +30,7 @@ const Note = (props) => {
 
 	)
 }
-export default Note
+export default Spot
 
 		// <tbody>
 		// 	<tr>

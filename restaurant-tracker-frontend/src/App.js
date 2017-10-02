@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import './App.css';
 // import 'semantic-ui-css/semantic.min.css';
 // import Nav from './components/Nav'
-import { Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import { loginUser } from './services/user'
 import RestaurantsContainer from './components/RestaurantsContainer'
-import YelpSearch from './components/YelpSearch'
+import SearchContainer from './components/SearchContainer'
 
 class App extends Component {
 
   state = {
     user: {},
     search: [],
+    notes: [],
     isLoggedIn: false
   }
 
@@ -55,10 +56,11 @@ class App extends Component {
         'Authorization': `${token}`
       },
       'body': body,
-    }).then((res)=>res.json()).then((res)=>{
+    }).then((res)=>res.json())
+    .then((res)=>{
       let notes = [...this.state.notes, res]
         this.setState({
-          notes: notes
+          notes: notes 
         })
       })
   }
@@ -67,7 +69,6 @@ class App extends Component {
     const noteId = event.target.id
     const token = localStorage.getItem("jwtToken")
     const body = JSON.stringify({note_id: noteId})
-
     return fetch("http://localhost:3000/notes", {
       'method': 'delete',
       'headers': {
@@ -93,17 +94,14 @@ class App extends Component {
    })
     .then(res => res.json())
     .then(res => res = res.businesses.slice(0,8))
-    .then(res => this.setState({
-      search: res
-    }))
   }
 
   render() {
       return (
         <div className="App">
           <Route path="/login" render={(props) => <LoginForm onLogin={this.login} {...props}/>}/>
-          <Route path="/spots" render={(props) => <RestaurantsContainer user={this.state.user} {...props}/>}/>
-          <Route path='/new' render={(props) => <YelpSearch searchResults={this.state.search} handleSearch={this.handleSearch} handleDelete={this.handleDelete} addNote={this.addNote} {...props}/>} />
+          <Route path="/spots" render={(props) => <RestaurantsContainer user={this.state.user} handleDelete={this.handleDelete} notes={this.state.notes} {...props}/>}/>
+          <Route path='/new' render={(props) => <SearchContainer searchResults={this.state.search} handleSearch={this.handleSearch}  addNote={this.addNote} {...props}/>} />
         </div>
       );
   }

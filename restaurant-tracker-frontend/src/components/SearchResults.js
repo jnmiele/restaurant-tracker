@@ -2,26 +2,18 @@ import React from 'react'
 
 import SearchResult from './SearchResult'
 
-class SearchResults extends React.Component {
-	constructor(props) {
-		super(props)
+const SearchResults = (props) => {
 
-		this.state = {
-			rest: {}
-		}
+	if (props.results.length !== 0) {
+		const results = props.results.map((result, index) => <SearchResult updateFound={props.updateFound} key={index} result={result} />)
+		return(
+			<div className="columns is-multiline">
+				{results}
+			</div>
+		)
+	} else {
+		return(null)
 	}
 
-	render(){
-		if (this.props.results.length !== 0) {
-			const results = this.props.results.map((result, index) => <SearchResult key={index} result={result} />)
-			return(
-				<div className="columns is-multiline">
-					{results}
-				</div>
-			)
-		} else {
-			return(null)
-		}
-	} 
 }
 export default SearchResults

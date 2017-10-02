@@ -1,15 +1,16 @@
 import React from 'react'
-import Note from './Note'
+import Spot from './Spot'
 import { Link } from 'react-router-dom'
+
 class RestaurantsList extends React.Component {
 	render(){
-		const notes = this.props.notes.map((note, index) => <Note key={note.id} id={note.id} title={note.title} body={note.body} rest={note.restaurant} handleDelete={this.props.handleDelete}/>)
+		const spots = this.props.spots.map((spot, index) => <Spot key={spot.id} id={spot.id} title={spot.title} body={spot.body} rest={spot.restaurant} handleDelete={this.props.handleDelete}/>)
 		return(
 			<div className="container">
 				<h1>My Spots</h1>
 				<h3><Link to='/new'>Add a New Spot</Link></h3>
 				<div className="columns is-multiline">
-					{notes}
+					{spots}
 				</div>
 			</div>
 		)

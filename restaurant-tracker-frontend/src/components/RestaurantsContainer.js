@@ -13,7 +13,7 @@ export default class RestaurantsContainer extends React.Component {
 		this.state = {
 			username: '',
 			userId: '',
-			notes: [],
+			spots: [],
 			searchResults: []
 		}
 	}
@@ -35,7 +35,7 @@ export default class RestaurantsContainer extends React.Component {
 		.then(res => this.setState({
 			username: res.username,
 			userId: res.id,
-			notes: res.notes
+			spots: res.notes
 		})
 	)
 	}
@@ -44,7 +44,7 @@ export default class RestaurantsContainer extends React.Component {
 		if (localStorage.getItem("jwtToken")) {
 			return (
 				<div className="container">
-					<RestaurantsList notes={this.state.notes} handleDelete={this.handleDelete}/>
+					<RestaurantsList spots={this.state.spots} handleDelete={this.props.handleDelete}/>
 				</div>
 			)
 		} else if (this.props.location.pathname === "/login"){
