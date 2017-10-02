@@ -1,8 +1,5 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-// import Note from './Note'
-// import NoteForm from './NoteForm'
-// import { loginParams } from '../services/user'
 import RestaurantsList from './RestaurantsList'
 
 
@@ -35,16 +32,37 @@ export default class RestaurantsContainer extends React.Component {
 		.then(res => this.setState({
 			username: res.username,
 			userId: res.id,
-			spots: res.notes
+			spots: res.spots
 		})
 	)
+	}
+
+	handleDelete = (event) => {
+
+    const id = parseInt(event.target.dataset.id);
+    const token = localStorage.getItem("jwtToken")
+    const body = JSON.stringify({spot_id: id})
+
+    return fetch("http://localhost:3000/spots", {
+      'method': 'delete',
+      'headers': {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `${token}`
+      },
+      'body': body,
+    }).then(() => {
+			let newState = [...this.state.spots];
+			newState = newState.filter((spot) => spot.id !== id);
+    	this.setState({spots: newState});
+    })
 	}
 
 	render(){
 		if (localStorage.getItem("jwtToken")) {
 			return (
 				<div className="container">
-					<RestaurantsList spots={this.state.spots} handleDelete={this.props.handleDelete}/>
+					<RestaurantsList spots={this.state.spots} handleDelete={this.handleDelete}/>
 				</div>
 			)
 		} else if (this.props.location.pathname === "/login"){

@@ -11,7 +11,7 @@ class SearchContainer extends React.Component {
         this.state = {
             username: '',
             userId: '',
-            notes: [],
+            spots: [],
             search: '',
             rest: {},
             found: false
@@ -38,7 +38,7 @@ class SearchContainer extends React.Component {
             return( 
                 <div className="container">
                     <h1> Enter your notes: </h1>
-                    <SpotForm addNote={this.props.addNote} rest={this.state.rest}/>
+                    <SpotForm addSpot={this.props.addSpot} rest={this.state.rest}/>
                     <div className="field is-grouped is-grouped-centered">
                         <SearchResult result={this.state.rest} found={this.state.found} />
                     </div>

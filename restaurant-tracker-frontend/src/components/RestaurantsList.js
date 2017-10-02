@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 class RestaurantsList extends React.Component {
 	render(){
+		console.log(this.props)
 		const spots = this.props.spots.map((spot, index) => <Spot key={spot.id} id={spot.id} title={spot.title} body={spot.body} rest={spot.restaurant} handleDelete={this.props.handleDelete}/>)
 		return(
 			<div className="container">

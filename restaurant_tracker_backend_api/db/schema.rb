@@ -15,21 +15,21 @@ ActiveRecord::Schema.define(version: 20170927212554) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "notes", force: :cascade do |t|
-    t.string "title"
-    t.string "body"
-    t.integer "user_id"
-    t.integer "restaurant_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.string "address"
     t.string "rating"
     t.string "price"
     t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spots", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.integer "user_id"
+    t.integer "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

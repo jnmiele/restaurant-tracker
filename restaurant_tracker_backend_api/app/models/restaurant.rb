@@ -1,4 +1,4 @@
 class Restaurant < ApplicationRecord
-	has_many :notes
-	has_many :users, through: :notes
+	has_many :spots
+	has_many :users, through: :spots
 end

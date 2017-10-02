@@ -13,15 +13,9 @@ class App extends Component {
   state = {
     user: {},
     search: [],
-    notes: [],
+    spots: [],
     isLoggedIn: false
   }
-
-
-  logout = () => {
-    
-  }
-
 
   componentDidMount() {
     fetch("http://localhost:3000/")
@@ -44,11 +38,12 @@ class App extends Component {
       })
   }
 
-  addNote = (noteObject) => {
+  addSpot = (spotObject) => {
     const token = localStorage.getItem("jwtToken")
-    const body = JSON.stringify(noteObject)
+    const body = JSON.stringify(spotObject)
+    debugger
 
-    return fetch("http://localhost:3000/notes", {
+    return fetch("http://localhost:3000/spots", {
       'method': 'post',
       'headers': {
         'Accept': 'application/json',
@@ -58,26 +53,11 @@ class App extends Component {
       'body': body,
     }).then((res)=>res.json())
     .then((res)=>{
-      let notes = [...this.state.notes, res]
+      let spots = [...this.state.spots, res]
         this.setState({
-          notes: notes 
+          spots: spots 
         })
       })
-  }
-
-  handleDelete = (event) => {
-    const noteId = event.target.id
-    const token = localStorage.getItem("jwtToken")
-    const body = JSON.stringify({note_id: noteId})
-    return fetch("http://localhost:3000/notes", {
-      'method': 'delete',
-      'headers': {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `${token}`
-      },
-      'body': body,
-    })
   }
 
   handleSearch = (searchTerm) => {
@@ -94,14 +74,17 @@ class App extends Component {
    })
     .then(res => res.json())
     .then(res => res = res.businesses.slice(0,8))
+    .then(res => this.setState({
+      search: res
+    }))
   }
 
   render() {
       return (
         <div className="App">
           <Route path="/login" render={(props) => <LoginForm onLogin={this.login} {...props}/>}/>
-          <Route path="/spots" render={(props) => <RestaurantsContainer user={this.state.user} handleDelete={this.handleDelete} notes={this.state.notes} {...props}/>}/>
-          <Route path='/new' render={(props) => <SearchContainer searchResults={this.state.search} handleSearch={this.handleSearch}  addNote={this.addNote} {...props}/>} />
+          <Route path="/spots" render={(props) => <RestaurantsContainer user={this.state.user} handleDelete={this.handleDelete} spots={this.state.spots} {...props}/>}/>
+          <Route path='/new' render={(props) => <SearchContainer searchResults={this.state.search} handleSearch={this.handleSearch}  addSpot={this.addSpot} {...props}/>} />
         </div>
       );
   }

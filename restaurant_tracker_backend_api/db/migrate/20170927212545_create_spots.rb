@@ -1,6 +1,6 @@
-class CreateNotes < ActiveRecord::Migration[5.1]
+class CreateSpots < ActiveRecord::Migration[5.1]
   def change
-    create_table :notes do |t|
+    create_table :spots do |t|
     	t.string :title
     	t.string :body
     	t.integer :user_id

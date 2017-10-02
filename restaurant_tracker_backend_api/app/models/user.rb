@@ -1,5 +1,5 @@
 class User < ApplicationRecord
 	has_secure_password
-	has_many :notes
-	has_many :restaurants, through: :notes
+	has_many :spots
+	has_many :restaurants, through: :spots
 end

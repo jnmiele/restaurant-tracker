@@ -9,7 +9,7 @@ const SpotForm = (props) => {
 		const title = event.target.title.value
 		const body = event.target.body.value
 		const rest = props.rest
-		props.addNote( {note: {title, body,	restaurant: rest,	user_id: 1}} )
+		props.addSpot( {spot: {title, body,	restaurant: rest,	user_id: 1}} )
 		console.log("lets pretend it redirected.")
 	}
 
@@ -39,7 +39,7 @@ export default SpotForm
 
 
 
-// export default class NoteForm extends React.Component {
+// export default class SpotForm extends React.Component {
 // 	constructor(props){
 // 		super(props)
 // 		this.state = {
@@ -58,5 +58,5 @@ export default SpotForm
 // 		this.setState({
 // 			title,
 // 			body
-// 		}, () => {this.props.addNote( {note: {title, body,	restaurant: rest,	user_id: 1}} )})
+// 		}, () => {this.props.addSpot( {spot: {title, body,	restaurant: rest,	user_id: 1}} )})
 // 	}

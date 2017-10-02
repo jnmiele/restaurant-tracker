@@ -22,7 +22,7 @@ const Spot = (props) => {
 			      <strong>{props.title}:</strong> {props.body}
 			      <br/>
 			      <time><strong>Added:</strong> {created_at.getMonth()}.{created_at.getDate()}.{created_at.getFullYear()}</time><br/>
-			      <button onClick={props.handleDelete} id={props.id} className="delete"></button>
+			      <button onClick={props.handleDelete} data-id={props.id} id={props.id} className="delete"></button>
 			    </div>
 			  </div>
 			  </div>
