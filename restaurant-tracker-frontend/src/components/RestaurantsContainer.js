@@ -93,25 +93,20 @@ export default class RestaurantsContainer extends React.Component {
 	}
 
 	render(){
+		console.log(this.state.notes)
 		const notes = this.state.notes.map((note, index) => <Note key={note.id} id={note.id} title={note.title} body={note.body} rest={note.restaurant} handleDelete={this.handleDelete}/>)
 		if (localStorage.getItem("jwtToken")) {
 			return (
-				<div>
+				<div className="container">
+					<h1>Add a New Spot</h1>
 					<YelpSearch handleSearch={this.handleSearch} />
 					<NoteForm addNote={this.addNote} userId={this.state.userId}/>
-					<h1>MY SPOTS</h1>
-					<table>
-						<tbody>
-							<tr>
-								<th>Name:</th>
-								<th>Address: </th>
-								<th>Neighborhood:</th>
-								<th>Yelp Rating:</th>
-								<th>Notes</th>
-							</tr>
-						</tbody>
+					<br/>
+					<br/>
+					<h1>My Spots</h1>
+					<div class="columns is-multiline">
 						{notes}
-					</table>
+					</div>
 				</div>
 			)
 		} else if (this.props.location.pathname === "/login"){

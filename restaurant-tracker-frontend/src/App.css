@@ -1,28 +1,103 @@
+h1 {
+  font-family: 'League Script';
+  font-weight: bolder;
+  /*font-style: italic;*/
+  font-size: 65px;
+  line-height: 75px;
+  color: #ff00de;
+}
+
+h1:hover {
+  color: #fff0ff;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-animation: neon6 1s ease-in-out infinite alternate;
+  animation: neon6 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes neon6 {
+  from {
+    text-shadow: 0 0 20px #fff, 0 0 25px #fff, 0 0 35px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de, 0 0 250px #ff00de;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de, 0 0 200px #ff00de;
+  }
+}
+
+@keyframes neon6 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de, 0 0 250px #ff00de;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+  }
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.container {
+  padding-top: 15px;
 }
 
-.App-intro {
-  font-size: large;
+.card:hover {
+  -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
+  animation: neon2 1.5s ease-in-out infinite alternate;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.card {
+  font-family: Raleway;
+}
+
+@-webkit-keyframes neon2 {
+  from {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #228DFF, 0 0 40px #228DFF, 0 0 70px #228DFF;
+  }
+  to {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #228DFF, 0 0 20px #228DFF, 0 0 35px #228DFF;
+  }
+}
+
+@keyframes neon2 {
+  from {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #228DFF, 0 0 40px #228DFF, 0 0 70px #228DFF;
+  }
+  to {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #228DFF, 0 0 20px #228DFF, 0 0 35px #228DFF;
+  }
+}
+
+body, html {
+  height: 100%;
+  background-image: url(http://www.pptback.com/uploads/black-city-backgrounds-powerpoint.jpg);
+  background-color: black;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-repeat: none;
+  background-size: cover;
+}
+
+th {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #228DFF, 0 0 20px #228DFF;
+  font-weight: 900;
+  font-family: 'Playfair Display', serif;
+  /*font-style: italic;*/
+  font-size: 30px;
+}
+
+td {
+  color: #f4f4f4;
+  font-family: 'Playfair Display', serif;
+  /*font-style: italic;*/
+  font-weight: 400;
+  font-size: 25px;
+  height: 40px;
+}
+
+table {
+  width: 100%;
+  background-color: ;
 }
