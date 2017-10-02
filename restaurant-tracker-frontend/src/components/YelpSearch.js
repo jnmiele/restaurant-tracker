@@ -1,10 +1,15 @@
 import React from 'react'
 
+import SearchResults from './SearchResults'
+
 class YelpSearch extends React.Component {
     constructor(props){
         super(props)
 
         this.state = {
+            username: '',
+            userId: '',
+            notes: [],
             search: ''
         }
     }
@@ -14,17 +19,21 @@ class YelpSearch extends React.Component {
         const restName = event.target.rest.value
         this.setState({
             search: restName
-        }, () => this.props.handleSearch({restaurantName: restName}))
+        }, () => this.props.handleSearch(restName))
     }
 
     render(){
         return(
-            <form onSubmit={this.onSubmit}>
-                <input type="text" name="rest" placeholder="Restaurant Name"/>
-            </form>
+            <div>
+                <h1> YELP SEARCH </h1>
+                <form onSubmit={this.onSubmit}>
+                    <input type="text" name="rest" placeholder="Restaurant Name"/><br/>
+                    <input type="submit" value="Search"/>
+                </form>
+                <SearchResults results={this.props.searchResults}/>
+            </div>
         )
     }
-
 }
 
 export default YelpSearch

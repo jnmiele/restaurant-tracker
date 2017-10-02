@@ -7,7 +7,16 @@ h1 {
   color: #ff00de;
 }
 
-h1:hover {
+h3 {
+  font-family: 'League Script';
+  font-weight: bold;
+  /*font-style: italic;*/
+  font-size: 25px;
+  line-height: 40px;
+  color: #ff00de;
+}
+
+h1:hover, h3:hover {
   color: #fff0ff;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -45,10 +54,12 @@ h1:hover {
 .card:hover {
   -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
   animation: neon2 1.5s ease-in-out infinite alternate;
+  opacity: 1;
 }
 
 .card {
   font-family: Raleway;
+  opacity: .8;
 }
 
 @-webkit-keyframes neon2 {
@@ -71,12 +82,12 @@ h1:hover {
 
 body, html {
   height: 100%;
-  background-image: url(http://www.pptback.com/uploads/black-city-backgrounds-powerpoint.jpg);
-  background-color: black;
+  background-image: url(https://images.fineartamerica.com/images-medium-large-5/new-york-city-nyc-skyline-midtown-manhattan-at-night-black-and-white-jon-holiday.jpg);
+  background-color: #1e1e1e;
   background-position: bottom;
   background-attachment: fixed;
-  background-repeat: none;
-  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 th {

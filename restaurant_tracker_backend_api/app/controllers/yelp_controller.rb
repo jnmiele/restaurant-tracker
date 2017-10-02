@@ -1,7 +1,7 @@
 class YelpController < ApplicationController
 
   def fetch
-    rest_name = params[:restaurantName]
+    rest_name = params[:_json]
     response = RestClient::Request.execute(
       method: :get,
       url: "https://api.yelp.com/v3/businesses/search?term=#{rest_name}&location=new+york",
@@ -9,7 +9,6 @@ class YelpController < ApplicationController
     )
     results = JSON.parse(response)
     render json: results
-    byebug
   end
 
 end
