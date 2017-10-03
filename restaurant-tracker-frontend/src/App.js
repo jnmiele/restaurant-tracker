@@ -14,7 +14,7 @@ class App extends Component {
     user: {},
     search: [],
     spots: [],
-    isLoggedIn: false
+    isLoggedIn: localStorage.getItem("jwtToken") ? true : false
   }
 
   componentDidMount() {
@@ -29,8 +29,7 @@ class App extends Component {
       .then((user) => {
         localStorage.setItem("jwtToken", user.jwt)
         this.setState({
-          user,
-          isLoggedIn: true
+          user
         })
       })
   }
@@ -73,7 +72,8 @@ class App extends Component {
       if (event.target.dataset.id === "logout") {
         localStorage.removeItem("jwtToken")
         this.setState({
-          user: {}
+          user: {},
+          spots: []
         })
       }
   }

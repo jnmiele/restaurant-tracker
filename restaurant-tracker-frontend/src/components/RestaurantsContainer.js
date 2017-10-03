@@ -60,7 +60,7 @@ export default class RestaurantsContainer extends React.Component {
       } else { null }
 	}
 
-	addSpot = (spotObject, props) => {
+	addSpot = (spotObject) => {
     const token = localStorage.getItem("jwtToken")
     const body = JSON.stringify(spotObject)
 
@@ -148,7 +148,7 @@ export default class RestaurantsContainer extends React.Component {
 			return (
 				<div className="container">
 					<Route exact path='/spots' render={(props) => <RestaurantsList handleButtonClick={this.handleSort} spots={this.state.spots} addSpot={this.spot} handleDelete={this.handleDelete} location={this.props.location}/>}/>
-          <Route exact path='/spots/new' render={(props) => <SearchContainer addSpot={this.addSpot} searchResults={this.props.searchResults} handleSearch={this.props.handleSearch}/>}/>
+          <Route exact path='/spots/new' render={(props) => <SearchContainer addSpot={this.addSpot} searchResults={this.props.searchResults} handleSearch={this.props.handleSearch} username={this.state.username} userId={this.state.userId} spots={this.state.spots}/>}/>
 				</div>
 			)
 		} else if (this.props.location.pathname === "/login"){

@@ -7,7 +7,10 @@ const SpotForm = (props) => {
 		const title = event.target.title.value
 		const body = event.target.body.value
 		const rest = props.rest
-		props.addSpot( {spot: {title, body,	restaurant: rest,	user_id: 1}} )
+		const jwtDecode = require('jwt-decode')
+		const token = localStorage.getItem("jwtToken")
+		const userId = jwtDecode(token)
+		props.addSpot( {spot: {title, body,	restaurant: rest,	user_id: userId.user_id}} )
 	}
 	return(
 		<div>

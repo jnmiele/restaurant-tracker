@@ -9,9 +9,9 @@ class SearchContainer extends React.Component {
         super(props)
 
         this.state = {
-            username: '',
-            userId: '',
-            spots: [],
+            username: this.props.username,
+            userId: this.props.userId,
+            spots: this.props.spots,
             search: '',
             rest: {},
             found: false

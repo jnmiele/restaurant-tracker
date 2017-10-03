@@ -20,7 +20,7 @@ const SearchResult = (props) => {
 			  <div className="card-content">
 			    <div className="media">
 			      <div className="media-content">
-			        <p className="title is-4">{props.result.name}: <em className="title is-5">{props.result.neighborhood}</em></p>
+			        <p className="title is-4">{props.result.name}</p>
 			        <p className="subtitle is-6"><a>{props.result.location.display_address}</a> <br/> Rating: {props.result.rating} <br/> Price: {props.result.price}</p>
 			        { props.found ? null : <button className="select-spot button is-info is-outlined"
 			        data-name={props.result.name}
