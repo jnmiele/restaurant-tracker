@@ -13,7 +13,8 @@ export default class RestaurantsContainer extends React.Component {
 			username: '',
 			userId: '',
 			spots: [],
-			searchResults: []
+			searchResults: [],
+			nameSort: 'unsorted'
 		}
 	}
 
@@ -83,11 +84,70 @@ export default class RestaurantsContainer extends React.Component {
     })
   }
 
+  handleSort = (event) => {
+  	const spots = this.state.spots
+  	if (event.target.dataset.name === "sort-by-name") {
+			if (this.state.nameSort !== "ascending") {
+				let newSpots = spots.sort((prev, next) => {
+					if (prev.restaurant[event.target.value] < next.restaurant[event.target.value]) return -1
+					if (prev.restaurant[event.target.value] > next.restaurant[event.target.value]) return 1
+					return 0
+				})
+	  		this.setState({
+					spots: newSpots,
+					nameSort: 'ascending'
+				})
+			} else {
+				const newSpots = this.state.spots.reverse()
+				this.setState({
+					spots: newSpots,
+					nameSort: 'descending'
+				})
+			}
+  	} else if (event.target.dataset.name === "sort-by-price") {
+			if (this.state.priceSort !== "ascending") {
+				let newSpots = spots.sort((prev, next) => {
+					if (prev.restaurant[event.target.value] < next.restaurant[event.target.value]) return -1
+					if (prev.restaurant[event.target.value] > next.restaurant[event.target.value]) return 1
+					return 0
+				})
+	  		this.setState({
+					spots: newSpots,
+					priceSort: "ascending"
+				})
+			} else {
+				const newSpots = this.state.spots.reverse()
+				this.setState({
+					spots: newSpots,
+					priceSort: "descending"
+				})
+			} 
+  	} else if (event.target.dataset.name === "sort-by-rating") {
+			if (this.state.ratingSort !== "ascending") {
+				let newSpots = spots.sort((prev, next) => {
+					if (prev.restaurant[event.target.value] < next.restaurant[event.target.value]) return -1
+					if (prev.restaurant[event.target.value] > next.restaurant[event.target.value]) return 1
+					return 0
+				})
+	  		this.setState({
+					spots: newSpots,
+					ratingSort: "ascending"
+				})
+			} else {
+				const newSpots = this.state.spots.reverse()
+				this.setState({
+					spots: newSpots,
+					ratingSort: "descending"
+				})
+			}
+		}
+  }
+
 	render(){
 		if (localStorage.getItem("jwtToken")) {
 			return (
 				<div className="container">
-					<Route exact path='/spots' render={(props) => <RestaurantsList spots={this.state.spots} addSpot={this.spot} handleDelete={this.handleDelete} location={this.props.location}/>}/>
+					<Route exact path='/spots' render={(props) => <RestaurantsList handleButtonClick={this.handleSort} spots={this.state.spots} addSpot={this.spot} handleDelete={this.handleDelete} location={this.props.location}/>}/>
           <Route exact path='/spots/new' render={(props) => <SearchContainer addSpot={this.addSpot} searchResults={this.props.searchResults} handleSearch={this.props.handleSearch}/>}/>
 				</div>
 			)

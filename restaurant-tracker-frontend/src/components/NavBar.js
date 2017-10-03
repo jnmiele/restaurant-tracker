@@ -4,7 +4,7 @@ import React from 'react'
 const NavBar = (props) => {
 
 	return(
-		<nav className="navbar" role="navigation" aria-label="main navigation" onClick={props.handleLogout}>
+		<nav className="navbar" aria-label="main navigation" onClick={props.handleLogout}>
       <div className="navbar-brand">
         <a className="navbar-item" href="http://localhost:3001/spots">
           <img src="http://www.iconsdb.com/icons/preview/deep-pink/map-marker-2-xxl.png" alt="📍" width="28" height="28"/>

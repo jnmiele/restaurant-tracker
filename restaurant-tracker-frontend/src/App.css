@@ -5,6 +5,7 @@ h1 {
   font-size: 65px;
   line-height: 75px;
   color: #ff00de;
+  padding-left: 30px
 }
 
 h3 {
@@ -23,6 +24,10 @@ h1:hover {
   transition: all 0.5s;
   -webkit-animation: neon6 1s ease-in-out infinite alternate;
   animation: neon6 1s ease-in-out infinite alternate;
+}
+
+.buttons-for-sort {
+  padding-bottom: 5px;
 }
 
 .navbar {
