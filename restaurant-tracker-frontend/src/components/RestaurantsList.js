@@ -8,7 +8,7 @@ class RestaurantsList extends React.Component {
 		return(
 			<div className="container">
 				<h1>My Spots</h1>
-				<h3><Link to='/spots/new'>Add a New Spot</Link></h3>
+				<h3 className='add-new-spot'><Link to='/spots/new'>Add a New Spot</Link></h3>
 				<div className="columns is-multiline">
 					{spots}
 				</div>

@@ -16,12 +16,28 @@ h3 {
   color: #ff00de;
 }
 
+
 h1:hover, h3:hover {
   color: #fff0ff;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   -webkit-animation: neon6 1s ease-in-out infinite alternate;
   animation: neon6 1s ease-in-out infinite alternate;
+}
+
+.navbar {
+  opacity: .9;
+}
+
+.add-new-spot:hover {
+  color: white;
+}
+
+.spots-title {
+  font-size: 30px;
+  line-height: 20px;
+  font-family: 'League Script';
+  padding-bottom: 0px;
 }
 
 @-webkit-keyframes neon6 {

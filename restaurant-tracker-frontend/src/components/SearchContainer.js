@@ -35,7 +35,6 @@ class SearchContainer extends React.Component {
     }
 
     render(){
-        console.log("this is SearchContainer")
         if (this.state.found === true) {
             return( 
                 <div className="container">

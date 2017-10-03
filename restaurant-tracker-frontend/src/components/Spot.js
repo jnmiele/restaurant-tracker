@@ -3,7 +3,6 @@ import React from 'react'
 const Spot = (props) => {
 	const created_at = new Date(props.rest.created_at)
 	return(
-
 		<div className="column is-one-quarter">
 			<div className="card">
 			  <div className="card-image">
@@ -15,7 +14,7 @@ const Spot = (props) => {
 			    <div className="media">
 			      <div className="media-content">
 			        <p className="title is-4">{props.rest.name}: <em className="title is-5">{props.rest.neighborhood}</em></p>
-			        <p className="subtitle is-6"><a>{props.rest.address}</a> || Rating: {props.rest.rating}</p>
+			        <p className="subtitle is-6"><a>{props.rest.address.replace(',N', ', N')}</a> <br/>Yelp Rating: {props.rest.rating} <br/>How expensive?: {props.rest.price}</p>
 			      </div>
 			    </div>
 			    <div className="content">

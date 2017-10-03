@@ -17,6 +17,7 @@ export default class RestaurantsContainer extends React.Component {
 		}
 	}
 
+
 	componentDidMount(){
 		const jwtDecode = require('jwt-decode')
 		const token = localStorage.getItem("jwtToken")
@@ -82,11 +83,10 @@ export default class RestaurantsContainer extends React.Component {
   }	
 
 	render(){
-		console.log("This is RestaurantsContainer")
 		if (localStorage.getItem("jwtToken")) {
 			return (
 				<div className="container">
-					<RestaurantsList spots={this.state.spots} addSpot={this.spot} handleDelete={this.handleDelete} location={this.props.location}/>
+					<Route exact path='/spots' render={(props) => <RestaurantsList spots={this.state.spots} addSpot={this.spot} handleDelete={this.handleDelete} location={this.props.location}/>}/>
           <Route exact path='/spots/new' render={(props) => <SearchContainer addSpot={this.addSpot} searchResults={this.props.searchResults} handleSearch={this.props.handleSearch}/>}/>
 				</div>
 			)

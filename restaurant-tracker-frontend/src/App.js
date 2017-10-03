@@ -5,6 +5,7 @@ import { Redirect, Route } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import { loginUser } from './services/user'
 import RestaurantsContainer from './components/RestaurantsContainer'
+import NavBar from './components/NavBar'
 
 class App extends Component {
 
@@ -58,6 +59,7 @@ class App extends Component {
   render() {
       return (
         <div className="App">
+          <NavBar />
           <Route path="/login" render={(props) => <LoginForm onLogin={this.login} {...props}/>}/>
           <Route path="/spots" render={(props) => <RestaurantsContainer user={this.state.user} spots={this.state.spots} {...props} searchResults={this.state.search} handleSearch={this.handleSearch}/>}/>
         </div>
