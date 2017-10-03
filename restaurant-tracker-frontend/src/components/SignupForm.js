@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-class LoginForm extends React.Component {
+class SignupForm extends React.Component {
   constructor(props) {
     super(props)
 
@@ -14,12 +14,12 @@ class LoginForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
-    const loginParams = { username: this.state.username, password: this.state.password}
-    this.props.onLogin(loginParams)
-      this.setState({
-        username: "",
-        password:""
-      })
+    const signupParams = { username: this.state.username, password: this.state.password}
+    this.props.onSignup(signupParams)
+    this.setState({
+      username: "",
+      password:""
+    })
   }
 
 
@@ -43,7 +43,7 @@ class LoginForm extends React.Component {
     } else {
       return (
         <div className="container">
-        <h1>Login Here</h1>
+        <h1>Signup Here</h1>
         <form onSubmit={this.handleSubmit} className="field is-grouped is-grouped-centered">
           <div className="control">
           <input className="input is-primary" type="text" placeholder="username" onChange={this.handleUsernameChange} value={this.state.username}/>
@@ -56,7 +56,6 @@ class LoginForm extends React.Component {
           </div>
         </form>
         <br/>
-          <h3>Or Sign Up Here</h3>
         </div>
       )
     }
@@ -64,4 +63,4 @@ class LoginForm extends React.Component {
 
 }
 
-export default LoginForm
+export default SignupForm

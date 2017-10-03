@@ -39,22 +39,24 @@ export default class RestaurantsContainer extends React.Component {
 	)}
 
 	handleDelete = (event) => {
-    const id = parseInt(event.target.dataset.id);
-    const token = localStorage.getItem("jwtToken")
-    const body = JSON.stringify({spot_id: id})
-    return fetch("http://localhost:3000/spots", {
-      'method': 'delete',
-      'headers': {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `${token}`
-      },
-      'body': body,
-    }).then(() => {
-			let newState = [...this.state.spots];
-			newState = newState.filter((spot) => spot.id !== id);
-    	this.setState({spots: newState});
-    })
+    if (window.confirm("Are you sure you want to delete this?"))
+      {const id = parseInt(event.target.dataset.id);
+            const token = localStorage.getItem("jwtToken")
+            const body = JSON.stringify({spot_id: id})
+            return fetch("http://localhost:3000/spots", {
+              'method': 'delete',
+              'headers': {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `${token}`
+              },
+              'body': body,
+            }).then(() => {
+              let newState = [...this.state.spots];
+              newState = newState.filter((spot) => spot.id !== id);
+              this.setState({spots: newState});
+            })
+      } else { null }
 	}
 
 	addSpot = (spotObject, props) => {
@@ -73,13 +75,13 @@ export default class RestaurantsContainer extends React.Component {
     .then((res)=>{
       let spots = [...this.state.spots, res]
         this.setState({
-          spots: spots 
+          spots: spots
         })
       })
     .then(() => {
       this.props.history.push('/spots')
     })
-  }	
+  }
 
 	render(){
 		if (localStorage.getItem("jwtToken")) {
@@ -90,7 +92,7 @@ export default class RestaurantsContainer extends React.Component {
 				</div>
 			)
 		} else if (this.props.location.pathname === "/login"){
-				 return null		
+				 return null
 		} else {
 			return (<Redirect to="/login" />)
 		}

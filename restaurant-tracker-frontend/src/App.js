@@ -3,6 +3,7 @@ import './App.css';
 import { Redirect, Route } from 'react-router-dom'
 
 import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignupForm'
 import { loginUser } from './services/user'
 import RestaurantsContainer from './components/RestaurantsContainer'
 import NavBar from './components/NavBar'
@@ -20,9 +21,6 @@ class App extends Component {
     fetch("http://localhost:3000/")
       .then((res) => res.json())
       .then((json) => {
-
-        // console.log(json)
-
       })
   }
 
@@ -36,6 +34,21 @@ class App extends Component {
         })
       })
   }
+
+  signup = (signupParams) => {
+    const body = JSON.stringify(signupParams)
+    return fetch("http://localhost:3000/signup", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: body
+    })
+    .then(res => res.json())
+    .then(res => this.login({username: signupParams.username, password: signupParams.password }))
+  }
+
 
   handleSearch = (searchTerm) => {
     const token = localStorage.getItem("jwtToken")
@@ -56,11 +69,20 @@ class App extends Component {
     }))
   }
 
+  handleLogout = (event) => {
+      if (event.target.dataset.id === "logout") {
+        localStorage.removeItem("jwtToken")
+        this.setState({
+          user: {}
+        })
+      }
+  }
   render() {
       return (
         <div className="App">
-          <NavBar />
+          <NavBar handleLogout={this.handleLogout}/>
           <Route path="/login" render={(props) => <LoginForm onLogin={this.login} {...props}/>}/>
+          <Route path="/signup" render={(props) => <SignupForm onSignup={this.signup} {...props}/>}/>
           <Route path="/spots" render={(props) => <RestaurantsContainer user={this.state.user} spots={this.state.spots} {...props} searchResults={this.state.search} handleSearch={this.handleSearch}/>}/>
         </div>
       );

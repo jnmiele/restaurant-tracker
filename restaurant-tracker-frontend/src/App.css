@@ -17,7 +17,7 @@ h3 {
 }
 
 
-h1:hover, h3:hover {
+h1:hover {
   color: #fff0ff;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -29,12 +29,35 @@ h1:hover, h3:hover {
   opacity: .9;
 }
 
-footer {
-  font-size: 12px;
+#add-new-spot:hover {
+  color: white;
 }
 
-.add-new-spot:hover {
+h3:hover {
   color: white;
+  text-decoration-color: white;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-animation: neon3 1s ease-in-out infinite alternate;
+  animation: neon3 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes neon3 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #FFDD1B, 0 0 40px #FFDD1B, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #FFDD1B, 0 0 20px #FFDD1B, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF;
+  }
+}
+
+@keyframes neon3 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #FFDD1B, 0 0 40px #FFDD1B, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #FFDD1B, 0 0 20px #FFDD1B, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
 }
 
 .spots-title {
@@ -79,7 +102,7 @@ footer {
 
 .card {
   font-family: Raleway;
-  opacity: .8;
+  opacity: .9;
 }
 
 @-webkit-keyframes neon2 {
@@ -102,9 +125,9 @@ footer {
 
 body, html {
   height: 100%;
-  background-image: url(https://images.fineartamerica.com/images-medium-large-5/new-york-city-nyc-skyline-midtown-manhattan-at-night-black-and-white-jon-holiday.jpg);
+  background-image: url(https://images.unsplash.com/photo-1473118510328-7afd85ecc207?dpr=1&auto=compress,format&fit=crop&w=2534&h=&q=80&cs=tinysrgb&crop=);
   background-color: #1e1e1e;
-  background-position: bottom;
+  background-position: top;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100%;

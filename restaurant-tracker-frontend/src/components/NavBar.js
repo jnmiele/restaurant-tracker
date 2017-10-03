@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 
-const NavBar = () => {
+const NavBar = (props) => {
+
 	return(
-		<nav className="navbar" role="navigation" aria-label="main navigation">
+		<nav className="navbar" role="navigation" aria-label="main navigation" onClick={props.handleLogout}>
       <div className="navbar-brand">
-        <a className="navbar-item" href="">
-          <img src="http://www.iconsdb.com/icons/preview/deep-pink/map-marker-2-xxl.png" alt="Spots" width="28" height="28"/>
+        <a className="navbar-item" href="http://localhost:3001/spots">
+          <img src="http://www.iconsdb.com/icons/preview/deep-pink/map-marker-2-xxl.png" alt="📍" width="28" height="28"/>
           <a className="navbar-item spots-title"><strong>Spots</strong></a>
         </a>
       </div>
@@ -18,7 +19,7 @@ const NavBar = () => {
         	<Link to='/spots/new'><a>Add New Spot</a></Link>
         </div>
         <div className="navbar-item">
-        	{(localStorage.getItem("jwtToken")) ? <a>Logout</a> : <a>Login</a> }
+        	{(localStorage.getItem("jwtToken")) ? <a data-id="logout">Logout</a> : <a>Login</a> }
         </div>
       </div>
     </nav>

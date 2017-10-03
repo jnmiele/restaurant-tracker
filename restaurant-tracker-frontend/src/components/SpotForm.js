@@ -9,7 +9,6 @@ const SpotForm = (props) => {
 		const body = event.target.body.value
 		const rest = props.rest
 		props.addSpot( {spot: {title, body,	restaurant: rest,	user_id: 1}} )
-		console.log("lets pretend it redirected.")
 	}
 	return(
 		<div>
