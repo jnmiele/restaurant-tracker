@@ -42,7 +42,6 @@ export default class RestaurantsContainer extends React.Component {
     const id = parseInt(event.target.dataset.id);
     const token = localStorage.getItem("jwtToken")
     const body = JSON.stringify({spot_id: id})
-
     return fetch("http://localhost:3000/spots", {
       'method': 'delete',
       'headers': {

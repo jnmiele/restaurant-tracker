@@ -29,6 +29,10 @@ h1:hover, h3:hover {
   opacity: .9;
 }
 
+footer {
+  font-size: 12px;
+}
+
 .add-new-spot:hover {
   color: white;
 }
