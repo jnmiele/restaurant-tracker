@@ -1,6 +1,8 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
+
 import RestaurantsList from './RestaurantsList'
+import SearchContainer from './SearchContainer'
 
 
 export default class RestaurantsContainer extends React.Component {
@@ -26,19 +28,16 @@ export default class RestaurantsContainer extends React.Component {
 	      'Content-Type': 'application/json',
 	      'Authorization': `${token}`
    		}
-		}
-		)
+		})
 		.then(res => res.json())
 		.then(res => this.setState({
 			username: res.username,
 			userId: res.id,
 			spots: res.spots
 		})
-	)
-	}
+	)}
 
 	handleDelete = (event) => {
-
     const id = parseInt(event.target.dataset.id);
     const token = localStorage.getItem("jwtToken")
     const body = JSON.stringify({spot_id: id})
@@ -58,21 +57,58 @@ export default class RestaurantsContainer extends React.Component {
     })
 	}
 
+	addSpot = (spotObject, props) => {
+    const token = localStorage.getItem("jwtToken")
+    const body = JSON.stringify(spotObject)
+
+    return fetch("http://localhost:3000/spots", {
+      'method': 'post',
+      'headers': {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `${token}`
+      },
+      'body': body,
+    }).then((res)=>res.json())
+    .then((res)=>{
+      let spots = [...this.state.spots, res]
+        this.setState({
+          spots: spots 
+        })
+      })
+    .then(() => {
+      this.props.history.push('/spots')
+    })
+  }	
 
 	render(){
+		console.log("This is RestaurantsContainer")
 		if (localStorage.getItem("jwtToken")) {
 			return (
 				<div className="container">
-					<RestaurantsList spots={this.state.spots} handleDelete={this.handleDelete}/>
+					<RestaurantsList spots={this.state.spots} addSpot={this.spot} handleDelete={this.handleDelete} location={this.props.location}/>
+          <Route exact path='/spots/new' render={(props) => <SearchContainer addSpot={this.addSpot} searchResults={this.props.searchResults} handleSearch={this.props.handleSearch}/>}/>
 				</div>
 			)
 		} else if (this.props.location.pathname === "/login"){
-				 return null
+				 return null		
 		} else {
 			return (<Redirect to="/login" />)
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 // <-- High Order Components -->
 // import React from 'react'

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-// import 'semantic-ui-css/semantic.min.css';
-// import Nav from './components/Nav'
 import { Redirect, Route } from 'react-router-dom'
+
 import LoginForm from './components/LoginForm'
 import { loginUser } from './services/user'
 import RestaurantsContainer from './components/RestaurantsContainer'
-import SearchContainer from './components/SearchContainer'
 
 class App extends Component {
 
@@ -38,30 +36,6 @@ class App extends Component {
       })
   }
 
-  addSpot = (spotObject, props) => {
-    const token = localStorage.getItem("jwtToken")
-    const body = JSON.stringify(spotObject)
-
-    return fetch("http://localhost:3000/spots", {
-      'method': 'post',
-      'headers': {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `${token}`
-      },
-      'body': body,
-    }).then((res)=>res.json())
-    .then((res)=>{
-      let spots = [...this.state.spots, res]
-        this.setState({
-          spots: spots 
-        })
-      })
-    .then(() => {
-      console.log(props)
-    })
-  }
-
   handleSearch = (searchTerm) => {
     const token = localStorage.getItem("jwtToken")
     const body = JSON.stringify(searchTerm)
@@ -85,16 +59,18 @@ class App extends Component {
       return (
         <div className="App">
           <Route path="/login" render={(props) => <LoginForm onLogin={this.login} {...props}/>}/>
-          <Route path="/spots" render={(props) => <RestaurantsContainer user={this.state.user} handleDelete={this.handleDelete} spots={this.state.spots} {...props}/>}/>
-          <Route path='/new' render={(props) => <SearchContainer searchResults={this.state.search} handleSearch={this.handleSearch}  addSpot={this.addSpot} {...props}/>} />
+          <Route path="/spots" render={(props) => <RestaurantsContainer user={this.state.user} spots={this.state.spots} {...props} searchResults={this.state.search} handleSearch={this.handleSearch}/>}/>
         </div>
       );
   }
 
 }
 
-
 export default App;
+
+
+
+
   // <Route path="/" component={Nav}/>
 
   // const AuthRestContainer = Authorize(RestaurantsContainer)

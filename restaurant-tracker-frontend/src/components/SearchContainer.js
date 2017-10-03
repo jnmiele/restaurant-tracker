@@ -26,6 +26,7 @@ class SearchContainer extends React.Component {
         }, () => this.props.handleSearch(restName))
     }
 
+
     updateFound = (restaurant) => {
         this.setState({
             rest: restaurant,
@@ -34,6 +35,7 @@ class SearchContainer extends React.Component {
     }
 
     render(){
+        console.log("this is SearchContainer")
         if (this.state.found === true) {
             return( 
                 <div className="container">

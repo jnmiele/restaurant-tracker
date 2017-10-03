@@ -3,7 +3,6 @@ import React from 'react'
 
 
 const SpotForm = (props) => {
-
 	this.handleChange = (event) => {
 		event.preventDefault()
 		const title = event.target.title.value
@@ -12,7 +11,6 @@ const SpotForm = (props) => {
 		props.addSpot( {spot: {title, body,	restaurant: rest,	user_id: 1}} )
 		console.log("lets pretend it redirected.")
 	}
-
 	return(
 		<div>
 			<form onSubmit={this.handleChange}>
@@ -36,27 +34,3 @@ const SpotForm = (props) => {
 }
 
 export default SpotForm
-
-
-
-// export default class SpotForm extends React.Component {
-// 	constructor(props){
-// 		super(props)
-// 		this.state = {
-// 			restaurant_id: "",
-// 			user_id: this.props.userId,
-// 			title: "",
-// 			body: ""
-// 		}
-// 	}
-
-// 		handleChange = (event) => {
-// 		event.preventDefault()
-// 		const title = event.target.title.value
-// 		const body = event.target.body.value
-// 		const rest = this.props.rest
-// 		this.setState({
-// 			title,
-// 			body
-// 		}, () => {this.props.addSpot( {spot: {title, body,	restaurant: rest,	user_id: 1}} )})
-// 	}
