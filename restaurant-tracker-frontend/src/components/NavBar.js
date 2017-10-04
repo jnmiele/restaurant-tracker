@@ -7,7 +7,7 @@ const NavBar = (props) => {
 		<nav className="navbar" aria-label="main navigation" onClick={props.handleLogout}>
       <div className="navbar-brand">
         <a className="navbar-item" href="http://localhost:3001/spots">
-          <img src="http://www.iconsdb.com/icons/preview/deep-pink/map-marker-2-xxl.png" alt="📍" width="28" height="28"/>
+          <img src="map-marker.png" alt="📍" width="28" height="28"/>
           <a className="navbar-item spots-title"><strong>Spots</strong></a>
         </a>
       </div>

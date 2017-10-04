@@ -137,26 +137,3 @@ body, html {
   background-repeat: no-repeat;
   background-size: 100%;
 }
-
-th {
-  color: #fff;
-  text-shadow: 0 0 5px #fff, 0 0 10px #228DFF, 0 0 20px #228DFF;
-  font-weight: 900;
-  font-family: 'Playfair Display', serif;
-  /*font-style: italic;*/
-  font-size: 30px;
-}
-
-td {
-  color: #f4f4f4;
-  font-family: 'Playfair Display', serif;
-  /*font-style: italic;*/
-  font-weight: 400;
-  font-size: 25px;
-  height: 40px;
-}
-
-table {
-  width: 100%;
-  background-color: ;
-}

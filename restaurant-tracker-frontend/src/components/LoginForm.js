@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -56,7 +56,7 @@ class LoginForm extends React.Component {
           </div>
         </form>
         <br/>
-          <h3>Or Sign Up Here</h3>
+          <Link to='/signup'><h3><a id="add-new-spot">Or Sign Up Here</a></h3></Link>
         </div>
       )
     }
