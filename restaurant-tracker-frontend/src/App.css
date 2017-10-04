@@ -132,7 +132,7 @@ body, html {
   height: 100%;
   background-image: url(https://images.unsplash.com/photo-1473118510328-7afd85ecc207?dpr=1&auto=compress,format&fit=crop&w=2534&h=&q=80&cs=tinysrgb&crop=);
   background-color: #1e1e1e;
-  background-position: top;
+  background-position: bottom;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100%;
